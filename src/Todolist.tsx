@@ -20,6 +20,7 @@ export function Todolist(props: PropsType) {
     
     const addTaskHandler = () => {
         props.addTask(title)
+        setTitle('')
     }
     
     const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
