@@ -2,6 +2,7 @@
     border: 1px solid red;
 }
 
-.error-message {
+.error__message {
     color: red;
+    display: block;
 }
