@@ -6,3 +6,17 @@
     color: red;
     display: block;
 }
+
+.filter {
+    padding: 5px 15px;
+    border: 1px solid purple;
+    background-color: cornflowerblue;
+    color: antiquewhite;
+}
+
+.filter__active {
+    padding: 5px 15px;
+    border: 1px solid cornflowerblue;
+    background-color: purple;
+    color: antiquewhite;
+}
