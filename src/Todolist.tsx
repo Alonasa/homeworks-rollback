@@ -60,6 +60,14 @@ export function Todolist(props: PropsType) {
         return props.filter === value ? styles.filter__active : styles.filter
     }
     
+    const taskStyleHandler = (t: boolean)=> {
+       return t ? styles.task__done : ' '
+    }
+    
+    const inputStyleHandler =()=> {
+        return error ? styles.error : ''
+    }
+    
     return <div>
         <h3>{props.title}</h3>
         <div>
@@ -67,7 +75,7 @@ export function Todolist(props: PropsType) {
             {/*     onKeyPress={onKeyHandler} className={error ? styles.error : ''}/>*/}
             <Input value={title} callback={onChangeHandler}
                    keyCallback={onKeyHandler}
-                   className={error ? styles.error : ''}/>
+                   className={inputStyleHandler()}/>
             <Button title={'+'} callback={addTaskHandler}/>
             {error &&
             <span className={styles.error__message}>*Title is required</span>}
@@ -78,7 +86,7 @@ export function Todolist(props: PropsType) {
                     const changeStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                         props.changeStatus(t.id, e.currentTarget.checked)
                     }
-                    return (<li key={t.id}>
+                    return (<li key={t.id} className={taskStyleHandler(t.isDone)}>
                         <input type="checkbox" checked={t.isDone}
                                onChange={changeStatusHandler}/>
                         <span>{t.title}</span>

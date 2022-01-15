@@ -20,3 +20,9 @@
     background-color: purple;
     color: antiquewhite;
 }
+
+.task__done {
+    font-style: italic;
+    text-decoration: line-through cornflowerblue;
+    opacity: 0.7;
+}
