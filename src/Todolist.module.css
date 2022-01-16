@@ -55,4 +55,12 @@ li {
 .filter__active {
     background-color: cornflowerblue;
     border: 1px solid deeppink;
+  
+.error {
+    border: 1px solid red;
+}
+
+.error__message {
+    color: red;
+    display: block;
 }
