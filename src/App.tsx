@@ -34,13 +34,20 @@ function App() {
     function changeFilter(value: FilterValuesType) {
         setFilter(value);
     }
+    
+    const addTask = (title: string) => {
+        let task = { id: v1(), title: title, isDone: true }
+        setTasks([task, ...tasks])
+    }
 
     return (
         <div className="App">
             <Todolist title="What to learn"
                       tasks={tasksForTodolist}
                       removeTask={removeTask}
-                      changeFilter={changeFilter} />
+                      changeFilter={changeFilter}
+                      addTask={addTask}
+            />
         </div>
     );
 }
