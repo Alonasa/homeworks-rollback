@@ -5,7 +5,19 @@ import {v1} from 'uuid';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
+type TodolistsType = {
+  id: string
+  title: string
+  filter: FilterValuesType
+}
+
 function App() {
+  //fix
+  
+  let[todolists, setTodolists]=useState<Array<TodolistsType>>([
+	{id: v1(), title: 'What to learn', filter: 'all'},
+	{id: v1(), title: 'What to buy', filter: 'all'},
+  ])
   
   let [tasks, setTasks] = useState([
 	{id: v1(), title: 'HTML&CSS', isDone: true},
@@ -20,19 +32,8 @@ function App() {
 	setTasks(filteredTasks);
   }
   
-  let [filter, setFilter] = useState<FilterValuesType>('all');
-  
-  let tasksForTodolist = tasks;
-  
-  if (filter === 'active') {
-	tasksForTodolist = tasks.filter(t => !t.isDone);
-  }
-  if (filter === 'completed') {
-	tasksForTodolist = tasks.filter(t => t.isDone);
-  }
-  
-  function changeFilter(value: FilterValuesType) {
-	setFilter(value);
+  function changeFilter(todolistId: string,value: FilterValuesType) {
+	setTodolists(todolists.map(t => t.id ===todolistId ? {...t, filter: value} : t))
   }
   
   const addTask = (title: string) => {
@@ -46,14 +47,28 @@ function App() {
   
   return (
 	<div className="App">
-	  <Todolist title="What to learn"
-				tasks={tasksForTodolist}
-				removeTask={removeTask}
-				changeFilter={changeFilter}
-				addTask={addTask}
-				checkboxChange={checkboxChange}
-				filter={filter}
-	  />
+	  { todolists.map(t=> {
+		let tasksForTodolist = tasks;
+	 
+		if (t.filter === 'active') {
+		tasksForTodolist = tasks.filter(t => !t.isDone);
+		}
+		if (t.filter === 'completed') {
+		tasksForTodolist = tasks.filter(t => t.isDone);
+		}
+		
+	  return (
+		<Todolist key={t.id}
+				  todolistId={t.id}
+				  title={t.title}
+				  tasks={tasksForTodolist}
+				  removeTask={removeTask}
+				  changeFilter={changeFilter}
+				  addTask={addTask}
+				  checkboxChange={checkboxChange}
+				  filter={t.filter}
+		/>
+	  )})}
 	</div>
   );
 }
