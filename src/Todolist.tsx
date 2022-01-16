@@ -27,7 +27,7 @@ export function Todolist(props: PropsType) {
     }
     
     const addTaskHandler = () => {
-        props.addTask(title)
+        props.addTask(title.trim())
         setTitle('')
     }
     
