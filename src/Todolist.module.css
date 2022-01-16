@@ -1,9 +1,58 @@
+input {
+    margin-right: 10px;
+}
+
+button {
+    float: right;
+    padding: 5px 10px;
+}
+
+button:hover {
+    filter: saturate(5);
+}
+
+.todolist {
+    padding: 0;
+    list-style: none;
+}
+
+li {
+    padding: 5px 0;
+}
+
+.todo__title {
+    width: 270px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .error {
-    border: 2px solid red;
+    border: 2px solid deeppink;
 }
 
 .error__message {
     display: block;
-    color: red;
+    color: deeppink;
 }
 
+.task__done {
+    opacity: 0.6;
+    text-decoration: line-through deeppink;
+    font-style: italic;
+}
+
+.filters {
+    display: flex;
+}
+
+.filter {
+    padding: 5px 15px;
+    background-color: deeppink;
+    border: 1px solid cornflowerblue;
+    color: antiquewhite;
+}
+
+.filter__active {
+    background-color: cornflowerblue;
+    border: 1px solid deeppink;
+}

@@ -15,6 +15,7 @@ type PropsType = {
   changeFilter: (value: FilterValuesType) => void
   addTask: (title: string) => void
   checkboxChange: (id: string, status: boolean)=> void
+  filter: FilterValuesType
 }
 
 export function Todolist(props: PropsType) {
@@ -49,17 +50,21 @@ export function Todolist(props: PropsType) {
   	props.checkboxChange(id, status)
   }
   
-  return <div>
+  const activeFilterHandler = (filter: FilterValuesType) => {
+	return props.filter===filter ? styles.filter__active : styles.filter
+  }
+  
+  return <div className={styles.todo}>
 	<h3>{props.title}</h3>
-	<div>
+	<div className={styles.todo__title}>
 	  <input value={title} onChange={onChangeHandler}
 			 onKeyPress={onKeypressHandler} className={error ? styles.error : ''}/>
 	  <button onClick={addTaskHandler}>+</button>
         {error && <span className={styles.error__message}>***Title is required</span>}
 	</div>
-	<ul>
+	<ul className={styles.todolist}>
 	  {
-		props.tasks.map(t => <li key={t.id}>
+		props.tasks.map(t => <li key={t.id} className={t.isDone ? styles.task__done : ''}>
 		  <input type="checkbox" checked={t.isDone} onChange={(e: ChangeEvent<HTMLInputElement>)=>checkboxChangeHandler(t.id, e.currentTarget.checked)}/>
 		  <span>{t.title}</span>
 		  <button onClick={() => {
@@ -69,14 +74,14 @@ export function Todolist(props: PropsType) {
 		</li>)
 	  }
 	</ul>
-	<div>
-	  <button onClick={() => changeFilterHandler('all')}>
+	<div className={styles.filters}>
+	  <button className={activeFilterHandler('all')} onClick={() => changeFilterHandler('all')}>
 		All
 	  </button>
-	  <button onClick={() => changeFilterHandler('active')}>
+	  <button className={activeFilterHandler('active')} onClick={() => changeFilterHandler('active')}>
 		Active
 	  </button>
-	  <button onClick={() => changeFilterHandler('completed')}>
+	  <button className={activeFilterHandler('completed')} onClick={() => changeFilterHandler('completed')}>
 		Completed
 	  </button>
 	</div>
