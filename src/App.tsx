@@ -12,6 +12,7 @@ type TodolistsType = {
 }
 
 function App() {
+  //fix
   
   let[todolists, setTodolists]=useState<Array<TodolistsType>>([
 	{id: v1(), title: 'What to learn', filter: 'all'},
