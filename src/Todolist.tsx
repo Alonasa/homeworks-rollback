@@ -83,15 +83,15 @@ export function Todolist(props: PropsType) {
 	</ul>
 	<div className={styles.filters}>
 	  <button className={activeFilterHandler('all')}
-			  onClick={() => changeFilterHandler(props.todolistId,'all')}>
+			  onClick={() => changeFilterHandler(props.todolistId, 'all')}>
 		All
 	  </button>
 	  <button className={activeFilterHandler('active')}
-			  onClick={() => changeFilterHandler(props.todolistId,'active')}>
+			  onClick={() => changeFilterHandler(props.todolistId, 'active')}>
 		Active
 	  </button>
 	  <button className={activeFilterHandler('completed')}
-			  onClick={() => changeFilterHandler(props.todolistId,'completed')}>
+			  onClick={() => changeFilterHandler(props.todolistId, 'completed')}>
 		Completed
 	  </button>
 	</div>

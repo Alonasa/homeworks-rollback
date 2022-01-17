@@ -13,7 +13,7 @@ type TodolistsType = {
 
 function App() {
   
-  let[todolists, setTodolists]=useState<Array<TodolistsType>>([
+  let [todolists, setTodolists] = useState<Array<TodolistsType>>([
 	{id: v1(), title: 'What to learn', filter: 'all'},
 	{id: v1(), title: 'What to buy', filter: 'all'},
   ])
@@ -31,8 +31,11 @@ function App() {
 	setTasks(filteredTasks);
   }
   
-  function changeFilter(todolistId: string,value: FilterValuesType) {
-	setTodolists(todolists.map(t => t.id ===todolistId ? {...t, filter: value} : t))
+  function changeFilter(todolistId: string, value: FilterValuesType) {
+	setTodolists(todolists.map(t => t.id === todolistId ? {
+	  ...t,
+	  filter: value
+	} : t))
   }
   
   const addTask = (title: string) => {
@@ -46,28 +49,29 @@ function App() {
   
   return (
 	<div className="App">
-	  { todolists.map(t=> {
+	  {todolists.map(t => {
 		let tasksForTodolist = tasks;
-	 
+		
 		if (t.filter === 'active') {
-		tasksForTodolist = tasks.filter(t => !t.isDone);
+		  tasksForTodolist = tasks.filter(t => !t.isDone);
 		}
 		if (t.filter === 'completed') {
-		tasksForTodolist = tasks.filter(t => t.isDone);
+		  tasksForTodolist = tasks.filter(t => t.isDone);
 		}
 		
-	  return (
-		<Todolist key={t.id}
-				  todolistId={t.id}
-				  title={t.title}
-				  tasks={tasksForTodolist}
-				  removeTask={removeTask}
-				  changeFilter={changeFilter}
-				  addTask={addTask}
-				  checkboxChange={checkboxChange}
-				  filter={t.filter}
-		/>
-	  )})}
+		return (
+		  <Todolist key={t.id}
+					todolistId={t.id}
+					title={t.title}
+					tasks={tasksForTodolist}
+					removeTask={removeTask}
+					changeFilter={changeFilter}
+					addTask={addTask}
+					checkboxChange={checkboxChange}
+					filter={t.filter}
+		  />
+		)
+	  })}
 	</div>
   );
 }
