@@ -16,7 +16,7 @@ button {
 }
 
 button:hover {
-    filter: saturate(5);
+    filter: contrast(70%);
     color: deeppink;
     border: 2px solid deeppink;
 }

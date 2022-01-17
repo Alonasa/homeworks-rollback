@@ -55,8 +55,12 @@ function App() {
   }
   
   const checkboxChange = (id: string, status: boolean, todolistId: string) => {
-	//setTasks(tasks.map(t => t.id === id ? {...t, isDone: status} : t))
-	
+	setTasks({...tasks,
+	  [todolistId]: tasks[todolistId].map(t => t.id === id ? {
+		...t,
+		isDone: status
+	  } : t)
+	})
   }
   
   return (
