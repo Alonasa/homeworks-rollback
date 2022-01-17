@@ -29,17 +29,17 @@ function App() {
 	  {id: v1(), title: 'GraphQL', isDone: false},
 	],
 	[todolistId2]: [
-	  {id: v1(), title: 'HTML&CSS', isDone: true},
-	  {id: v1(), title: 'JS', isDone: true},
-	  {id: v1(), title: 'ReactJS', isDone: false},
-	  {id: v1(), title: 'Rest API', isDone: false},
-	  {id: v1(), title: 'GraphQL', isDone: false},
+	  {id: v1(), title: 'HTML&CSS2', isDone: true},
+	  {id: v1(), title: 'JS2', isDone: true},
+	  {id: v1(), title: 'ReactJS2', isDone: false},
+	  {id: v1(), title: 'Rest API2', isDone: false},
+	  {id: v1(), title: 'GraphQL2', isDone: false},
 	]
   });
   
-  function removeTask(id: string) {
-	let filteredTasks = tasks.filter(t => t.id !== id);
-	setTasks(filteredTasks);
+  function removeTask(id: string, todlistId: string) {
+	let filteredTasks = tasks[todlistId].filter(t => t.id !== id);
+	setTasks({...tasks, [todlistId]:filteredTasks});
   }
   
   function changeFilter(todolistId: string, value: FilterValuesType) {
@@ -50,24 +50,24 @@ function App() {
   }
   
   const addTask = (title: string) => {
-	let task = {id: v1(), title: title, isDone: true}
-	setTasks([task, ...tasks])
+	//let task = {id: v1(), title: title, isDone: true}
+	// setTasks([task, ...tasks])
   }
   
   const checkboxChange = (id: string, status: boolean) => {
-	setTasks(tasks.map(t => t.id === id ? {...t, isDone: status} : t))
+	//setTasks(tasks.map(t => t.id === id ? {...t, isDone: status} : t))
   }
   
   return (
 	<div className="App">
 	  {todolists.map(t => {
-		let tasksForTodolist = tasks;
+		let tasksForTodolist = tasks[t.id];
 		
 		if (t.filter === 'active') {
-		  tasksForTodolist = tasks.filter(t => !t.isDone);
+		  tasksForTodolist = tasks[t.id].filter(t => !t.isDone);
 		}
 		if (t.filter === 'completed') {
-		  tasksForTodolist = tasks.filter(t => t.isDone);
+		  tasksForTodolist = tasks[t.id].filter(t => t.isDone);
 		}
 		
 		return (
