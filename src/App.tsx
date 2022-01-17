@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import './App.css';
-import {Todolist} from './Todolist';
+import {TasksStateType, TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
 
 export type FilterValuesType = 'all' | 'active' | 'completed';
@@ -20,8 +20,8 @@ function App() {
 	{id: todolistId2, title: 'What to buy', filter: 'all'},
   ])
   
-  let [tasks, setTasks] = useState({
-	[todolistId1] : [
+  let [tasks, setTasks] = useState<TasksStateType>({
+	[todolistId1]: [
 	  {id: v1(), title: 'HTML&CSS', isDone: true},
 	  {id: v1(), title: 'JS', isDone: true},
 	  {id: v1(), title: 'ReactJS', isDone: false},
@@ -39,7 +39,7 @@ function App() {
   
   function removeTask(id: string, todlistId: string) {
 	let filteredTasks = tasks[todlistId].filter(t => t.id !== id);
-	setTasks({...tasks, [todlistId]:filteredTasks});
+	setTasks({...tasks, [todlistId]: filteredTasks});
   }
   
   function changeFilter(todolistId: string, value: FilterValuesType) {
@@ -49,9 +49,9 @@ function App() {
 	} : t))
   }
   
-  const addTask = (title: string) => {
-	//let task = {id: v1(), title: title, isDone: true}
-	// setTasks([task, ...tasks])
+  const addTask = (title: string, todolistId: string) => {
+	let task:TaskType = {id: v1(), title: title, isDone: false}
+	setTasks({...tasks, [todolistId]: [task, ...tasks[todolistId]]})
   }
   
   const checkboxChange = (id: string, status: boolean) => {

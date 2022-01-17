@@ -2,7 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {FilterValuesType} from './App';
 import styles from './Todolist.module.css';
 
-type TaskType = {
+export type TaskType = {
   id: string
   title: string
   isDone: boolean
@@ -14,9 +14,13 @@ type PropsType = {
   tasks: Array<TaskType>
   removeTask: (taskId: string, todolistId: string) => void
   changeFilter: (todolistId: string, value: FilterValuesType) => void
-  addTask: (title: string) => void
+  addTask: (title: string, todolistId: string) => void
   checkboxChange: (id: string, status: boolean) => void
   filter: FilterValuesType
+}
+
+export type TasksStateType = {
+  [key: string]: Array<TaskType>
 }
 
 export function Todolist(props: PropsType) {
@@ -32,9 +36,9 @@ export function Todolist(props: PropsType) {
 	setError(false)
   }
   
-  const addTaskHandler = () => {
+  const addTaskHandler = (todolistId: string) => {
 	if (title) {
-	  props.addTask(title.trim())
+	  props.addTask(title.trim(),todolistId)
 	  setTitle('')
 	} else {
 	  setError(true)
@@ -43,7 +47,7 @@ export function Todolist(props: PropsType) {
   
   const onKeypressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
 	if (e.key === 'Enter') {
-	  addTaskHandler()
+	 // addTaskHandler()
 	}
   }
   
@@ -65,7 +69,7 @@ export function Todolist(props: PropsType) {
 	  <input value={title} onChange={onChangeHandler}
 			 onKeyPress={onKeypressHandler}
 			 className={error ? styles.error : ''}/>
-	  <button onClick={addTaskHandler}>+</button>
+	  <button onClick={()=>addTaskHandler(props.todolistId)}>+</button>
 	  {error &&
       <span className={styles.error__message}>***Title is required</span>}
 	</div>
