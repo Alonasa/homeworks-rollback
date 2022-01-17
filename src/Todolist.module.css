@@ -26,6 +26,13 @@ button:hover {
     list-style: none;
 }
 
+.todolist__title {
+    width: 270px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
 li {
     padding: 5px 0;
 }
