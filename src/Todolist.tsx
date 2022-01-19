@@ -42,9 +42,9 @@ export function Todolist(props: PropsType) {
 	}
   }
   
-  const onKeypressHandler = (e: KeyboardEvent<HTMLInputElement>) => {
+  const onKeypressHandler = (e: KeyboardEvent<HTMLInputElement>, todolistId: string) => {
 	if (e.key === 'Enter') {
-	  // addTaskHandler()
+	  addTaskHandler(todolistId)
 	}
   }
   
@@ -71,7 +71,7 @@ export function Todolist(props: PropsType) {
 	</div>
 	<div className={styles.todo__title}>
 	  <input value={title} onChange={onChangeHandler}
-			 onKeyPress={onKeypressHandler}
+			 onKeyPress={(e)=>onKeypressHandler(e,props.todolistId)}
 			 className={error ? styles.error : ''} type={'text'}/>
 	  <button onClick={() => addTaskHandler(props.todolistId)}>+</button>
 	  {error &&

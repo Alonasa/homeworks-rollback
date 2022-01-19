@@ -2,7 +2,6 @@ import React, {useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from './Todolist';
 import {v1} from 'uuid';
-
 export type FilterValuesType = 'all' | 'active' | 'completed';
 
 type TodolistsType = {
@@ -69,7 +68,6 @@ function App() {
   }
   
   const removeTodolist = (todolistId: string) => {
-	//setTasks({...tasks, [todolistId]: tasks[todolistId]:[] })
   	delete tasks[todolistId]
 	setTasks(tasks)
 	setTodolists(todolists.filter(tl => tl.id !== todolistId))
