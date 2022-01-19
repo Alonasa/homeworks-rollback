@@ -75,7 +75,7 @@ li {
 .filter__active {
     background-color: cornflowerblue;
     border: 2px solid deeppink;
-  
+}
 .error {
     border: 1px solid red;
 }
