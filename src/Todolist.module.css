@@ -1,19 +1,36 @@
 input {
     margin-right: 10px;
+    border-radius: 50px;
+}
+
+input[type="text"] {
+    width: 225px;
+    box-sizing: border-box;
+    padding: 5px 15px;
 }
 
 button {
+    border-radius: 50px;
     float: right;
     padding: 5px 10px;
 }
 
 button:hover {
-    filter: saturate(5);
+    filter: contrast(70%);
+    color: deeppink;
+    border: 2px solid deeppink;
 }
 
 .todolist {
     padding: 0;
     list-style: none;
+}
+
+.todolist__title {
+    width: 270px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
 }
 
 li {
@@ -23,7 +40,6 @@ li {
 .todo__title {
     width: 270px;
     display: flex;
-    flex-wrap: wrap;
 }
 
 .error {
@@ -48,13 +64,17 @@ li {
 .filter {
     padding: 5px 15px;
     background-color: deeppink;
-    border: 1px solid cornflowerblue;
+    border: 2px solid cornflowerblue;
+    color: antiquewhite;
+}
+
+.filter:hover {
     color: antiquewhite;
 }
 
 .filter__active {
     background-color: cornflowerblue;
-    border: 1px solid deeppink;
+    border: 2px solid deeppink;
   
 .error {
     border: 1px solid red;
